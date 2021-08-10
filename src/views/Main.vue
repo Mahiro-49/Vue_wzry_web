@@ -4,7 +4,7 @@
       <img src="../assets/logo.png" height="35">
       <div class="px-2 flex-1 left">
         <div class="text-white">王者荣耀</div>
-        <div class="text-gray-1 fs-xxs">团队成就更多</div>
+        <div class="text-gray-1 fs-xxs td">团队成就更多</div>
       </div>
       <button type="button" class="btn bg-primary">立即下载</button>
     </div>
@@ -21,6 +21,7 @@
           <router-link class="nav-link" to="/" tag="div">赛事中心</router-link>
         </div>
       </div>
+      
     </div>
 
     <router-view/>
@@ -33,13 +34,16 @@ export default {
 }
 </script>
 
-<style type="scss">
+<style lang="scss">
 .topbar {
   padding-bottom: 0.6154rem;
 }
 
 .topbar .left {
     padding-top: 0.3846rem;
+    .td {
+      margin-top: 0.2308rem;
+    }
 }
 
 .nav {
