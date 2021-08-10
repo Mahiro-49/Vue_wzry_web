@@ -15,7 +15,9 @@
 }
 
 
-
+li {
+    list-style: none;
+}
 
 html {
     line-height: 1.15;
@@ -96,6 +98,7 @@ pre {
 a {
     background-color: transparent;
     color: #999;
+    text-decoration: none;
 }
 
 
