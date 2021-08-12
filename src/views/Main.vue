@@ -34,8 +34,11 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .topbar {
+  position: sticky;
+  top: 0;
+  z-index: 999;
   background: url("../assets/images/index.png") no-repeat 0 87.195%;
   width: 28.8462rem;
   height: 3.4615rem;

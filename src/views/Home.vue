@@ -13,6 +13,7 @@
       </swiper-slide>
       <div class="swiper-pagination point px-3 pb-2" slot="pagination"></div>
     </swiper>
+    <!-- end -->
 
     <!-- 图标导航 -->
     <div class="nav-icon bg-white mt-3 text-center pt-3 text-grey-1">
@@ -47,6 +48,24 @@
         <span>收起</span>
       </div>
     </div>
+    <!-- end -->
+
+    <!-- 新闻资讯 -->
+    <m-list-card icon="menu" title="新闻资讯" :categories="newsCats">
+      <!-- 拿到子组件里的category -->
+      <template #items="{category}">
+        <div class="py-2" v-for="(news, index) in category.newList" :key="index">
+          <span>[{{news.categoryName}}]</span>
+          <span>|</span>
+          <span>{{news.title}}</span>
+          <span>{{news.date}}</span>
+        </div>
+      </template>
+    </m-list-card>
+
+    <!-- 英雄列表 -->
+    <m-card icon="menu1" title="英雄列表"></m-card>
+    <m-card icon="menu1" title="英雄列表"></m-card>
   </div>
 </template>
 
@@ -60,6 +79,53 @@ export default {
         },
         autoplay: { delay: 2500, disableOnInteraractuin: false },
       },
+      newsCats: [
+        {
+          name: "热门",
+          newList: new Array(5).fill({}).map((v) => ({
+            //创建一个有5个元素的数组；  fill填充： 用{}填充；   map:遍历，把里面的元素换成 v 里面的对象
+            categoryName: "公告",
+            title: "6月2日全服不停机更新公告",
+            date: "06/01",
+          })),
+        },
+        {
+          name: "新闻",
+          newList: new Array(5).fill({}).map((v) => ({
+            //创建一个有5个元素的数组；  fill填充： 用{}填充；   map:遍历，把里面的元素换成 v 里面的对象
+            categoryName: "新闻",
+            title: "6月2日全服不停机更新公告",
+            date: "06/01",
+          })),
+        },
+        {
+          name: "新闻",
+          newList: new Array(5).fill({}).map((v) => ({
+            //创建一个有5个元素的数组；  fill填充： 用{}填充；   map:遍历，把里面的元素换成 v 里面的对象
+            categoryName: "新闻",
+            title: "6月2日全服不停机更新公告",
+            date: "06/01",
+          })),
+        },
+        {
+          name: "新闻",
+          newList: new Array(5).fill({}).map((v) => ({
+            //创建一个有5个元素的数组；  fill填充： 用{}填充；   map:遍历，把里面的元素换成 v 里面的对象
+            categoryName: "新闻",
+            title: "6月2日全服不停机更新公告",
+            date: "06/01",
+          })),
+        },
+        {
+          name: "新闻",
+          newList: new Array(5).fill({}).map((v) => ({
+            //创建一个有5个元素的数组；  fill填充： 用{}填充；   map:遍历，把里面的元素换成 v 里面的对象
+            categoryName: "新闻",
+            title: "6月2日全服不停机更新公告",
+            date: "06/01",
+          })),
+        },
+      ],
     };
   },
 };
@@ -97,34 +163,68 @@ export default {
     }
   }
   .sprite {
-      background: url("../assets/images/index.png") no-repeat 0 0;
-      background-size: 28.8462rem;
-      display: inline-block;
-      &.sprite-news {
-        width: 1.7692rem;
-        height: 1.5385rem;
-        background-position: 63.546% 15.517%;
-      }
-      &.sprite-story {
-        width: 1.7692rem;
-        height: 1.5385rem;
-        background-position: 90.483% 15.614%;
-      }
-      &.sprite-mall {
-        width: 1.7692rem;
-        height: 1.5385rem;
-        background-position: 36.746% 0.924%;
-      }
-      &.sprite-tyf {
-        width: 1.7692rem;
-        height: 1.5385rem;
-        background-position: 10.408% 15.517%;
-      }
-      &.sprite-arrow {
-        width: 0.7692rem;
-        height: 0.7692rem;
-        background-position: 38.577% 52.076%;
+    background: url("../assets/images/index.png") no-repeat 0 0;
+    background-size: 28.8462rem;
+    display: inline-block;
+    &.sprite-news {
+      width: 1.7692rem;
+      height: 1.5385rem;
+      background-position: 63.546% 15.517%;
+    }
+    &.sprite-story {
+      width: 1.7692rem;
+      height: 1.5385rem;
+      background-position: 90.483% 15.614%;
+    }
+    &.sprite-mall {
+      width: 1.7692rem;
+      height: 1.5385rem;
+      background-position: 36.746% 0.924%;
+    }
+    &.sprite-tyf {
+      width: 1.7692rem;
+      height: 1.5385rem;
+      background-position: 10.408% 15.517%;
+    }
+    &.sprite-arrow {
+      width: 0.7692rem;
+      height: 0.7692rem;
+      background-position: 38.577% 52.076%;
+    }
+  }
+}
+
+.card {
+  .card-header {
+    .bg-1 {
+      width: 100%;
+      border-bottom: 2px solid #e3ecf5;
+      padding-bottom: 1.9231rem;
+    }
+  }
+  .card-body {
+    .nav {
+      justify-content: space-around;
+      padding-bottom: 0.3846rem;
+      .nav-item {
+        border-bottom: 3px solid transparent;
+        &.active {
+          color: #db9e3f;
+          border-block-color: #db9e3f;
+        }
       }
     }
+
+    .hero-list {
+      li {
+        a {
+          display: inline-block;
+          width: 100%;
+          height: 1.74rem;
+          flex: 1;
+        }
+      }
+    }
+  }
 }
 </style>
