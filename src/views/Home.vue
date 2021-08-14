@@ -64,20 +64,41 @@
     </m-list-card>
 
     <!-- 英雄列表 -->
-    <m-card icon="menu1" title="英雄列表"></m-card>
-    <m-card icon="menu1" title="英雄列表"></m-card>
+    <m-list-card class="cards" icon="a-ziyuan6" title="英雄列表" :categories="heroCats">
+      <!-- 拿到子组件里的category -->
+      <template #items="{category}">
+        <div class="d-flex heroes">
+          <div
+            class="py-2 text-center hero-item"
+            v-for="(heroes, index) in category.heroList"
+            :key="index"
+          >
+            <img :src="heroes.avatar" alt />
+            <div>{{heroes.name}}</div>
+          </div>
+        </div>
+      </template>
+    </m-list-card>
+
+
+
+
+     
+    <m-list-card class="cards" icon="a-ziyuan6" title="英雄列表" :categories="heroCats">
+      
+    </m-list-card>
   </div>
 </template>
 
 <script>
-import dayjs from 'dayjs'
+import dayjs from "dayjs";
 
 export default {
   filters: {
     // 处理时间戳
     date(val) {
-      return dayjs(val).format('MM/DD') 
-    }
+      return dayjs(val).format("MM/DD");
+    },
   },
   data() {
     return {
@@ -87,20 +108,29 @@ export default {
         },
         autoplay: { delay: 2500, disableOnInteraractuin: false },
       },
-      newsCats: []
+      newsCats: [],
+      heroCats: [],
     };
   },
 
   created() {
-    this.getNewsCats()
+    this.getNewsCats();
+    this.getHeroCats();
   },
   methods: {
+    // 获取新闻数据
     async getNewsCats() {
-      const res = await this.$http.get('news/list')
-      this.newsCats = res.data
+      const res = await this.$http.get("news/list");
+      this.newsCats = res.data;
+    },
+
+    // 获取英雄数据
+    async getHeroCats() {
+      const res = await this.$http.get("heroes/list");
+      this.heroCats = res.data;
       console.log(res);
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -209,6 +239,19 @@ export default {
   display: inline-block;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;    // 不换行 只显示一行
+  white-space: nowrap; // 不换行 只显示一行
+}
+.heroes {
+  flex-wrap: wrap;
+
+  .hero-item {
+    width: 16%;
+    margin: 0.3846rem 0.4615rem 0.3846rem 0.6rem;
+    img {
+      width: 100%;
+      border: 1px solid #e3ecf5;
+      border-radius: 0.3846rem;
+    }
+  }
 }
 </style>

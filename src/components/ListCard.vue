@@ -9,7 +9,9 @@
     </div>
     <div class="pt-3">
 
+      <!-- autoHeight 自动调节卡片高度 -->
       <swiper ref="swiper" 
+              :options="{autoHeight: true}"    
               @transitionStart="() => active = this.$refs.swiper.$swiper.activeIndex">  <!-- 滑动更改头部active -->
         <swiper-slide v-for="(category, index) in categories" :key="index">
           <slot name="items" :category="category"></slot>
