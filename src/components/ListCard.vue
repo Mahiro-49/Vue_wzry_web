@@ -3,12 +3,14 @@
     <div class="nav d-flex mt-4">
       <div class="nav-item" :class="{active: active === index}"
            v-for="(category,index) in categories" :key="index"
-           @click="active = index">
+           @click="$refs.swiper.$swiper.slideTo(index)">  <!-- 点击跳转到对应分类资讯 -->
         <div class="nav-link">{{category.name}}</div>
       </div>
     </div>
     <div class="pt-3">
-      <swiper>
+
+      <swiper ref="swiper" 
+              @transitionStart="() => active = this.$refs.swiper.$swiper.activeIndex">  <!-- 滑动更改头部active -->
         <swiper-slide v-for="(category, index) in categories" :key="index">
           <slot name="items" :category="category"></slot>
         </swiper-slide>

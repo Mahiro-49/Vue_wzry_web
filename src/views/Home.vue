@@ -54,11 +54,11 @@
     <m-list-card icon="menu" title="新闻资讯" :categories="newsCats">
       <!-- 拿到子组件里的category -->
       <template #items="{category}">
-        <div class="py-2" v-for="(news, index) in category.newList" :key="index">
-          <span>[{{news.categoryName}}]</span>
-          <span>|</span>
-          <span>{{news.title}}</span>
-          <span>{{news.date}}</span>
+        <div class="py-2 fs-lg d-flex mt-2" v-for="(news, index) in category.newsList" :key="index">
+          <span class="text-info">[{{news.categoryName}}]</span>
+          <span class="px-2 text-grey">|</span>
+          <span class="flex-1 text-dark-1 titles pr-2">{{news.title}}</span>
+          <span class="text-grey fs-sm">{{news.createdAt | date}}</span>
         </div>
       </template>
     </m-list-card>
@@ -70,7 +70,15 @@
 </template>
 
 <script>
+import dayjs from 'dayjs'
+
 export default {
+  filters: {
+    // 处理时间戳
+    date(val) {
+      return dayjs(val).format('MM/DD') 
+    }
+  },
   data() {
     return {
       swiperOptions: {
@@ -79,55 +87,20 @@ export default {
         },
         autoplay: { delay: 2500, disableOnInteraractuin: false },
       },
-      newsCats: [
-        {
-          name: "热门",
-          newList: new Array(5).fill({}).map((v) => ({
-            //创建一个有5个元素的数组；  fill填充： 用{}填充；   map:遍历，把里面的元素换成 v 里面的对象
-            categoryName: "公告",
-            title: "6月2日全服不停机更新公告",
-            date: "06/01",
-          })),
-        },
-        {
-          name: "新闻",
-          newList: new Array(5).fill({}).map((v) => ({
-            //创建一个有5个元素的数组；  fill填充： 用{}填充；   map:遍历，把里面的元素换成 v 里面的对象
-            categoryName: "新闻",
-            title: "6月2日全服不停机更新公告",
-            date: "06/01",
-          })),
-        },
-        {
-          name: "新闻",
-          newList: new Array(5).fill({}).map((v) => ({
-            //创建一个有5个元素的数组；  fill填充： 用{}填充；   map:遍历，把里面的元素换成 v 里面的对象
-            categoryName: "新闻",
-            title: "6月2日全服不停机更新公告",
-            date: "06/01",
-          })),
-        },
-        {
-          name: "新闻",
-          newList: new Array(5).fill({}).map((v) => ({
-            //创建一个有5个元素的数组；  fill填充： 用{}填充；   map:遍历，把里面的元素换成 v 里面的对象
-            categoryName: "新闻",
-            title: "6月2日全服不停机更新公告",
-            date: "06/01",
-          })),
-        },
-        {
-          name: "新闻",
-          newList: new Array(5).fill({}).map((v) => ({
-            //创建一个有5个元素的数组；  fill填充： 用{}填充；   map:遍历，把里面的元素换成 v 里面的对象
-            categoryName: "新闻",
-            title: "6月2日全服不停机更新公告",
-            date: "06/01",
-          })),
-        },
-      ],
+      newsCats: []
     };
   },
+
+  created() {
+    this.getNewsCats()
+  },
+  methods: {
+    async getNewsCats() {
+      const res = await this.$http.get('news/list')
+      this.newsCats = res.data
+      console.log(res);
+    }
+  }
 };
 </script>
 
@@ -226,5 +199,16 @@ export default {
       }
     }
   }
+}
+
+.text-info {
+  color: #4b67af;
+}
+
+.titles {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;    // 不换行 只显示一行
 }
 </style>
