@@ -54,12 +54,12 @@
     <m-list-card icon="menu" title="新闻资讯" :categories="newsCats">
       <!-- 拿到子组件里的category -->
       <template #items="{category}">
-        <div class="py-2 fs-lg d-flex mt-2" v-for="(news, index) in category.newsList" :key="index">
+        <router-link tag="div" :to="`/articles/${news._id}`" class="py-2 fs-lg d-flex mt-2" v-for="(news, index) in category.newsList" :key="index">
           <span class="text-info">[{{news.categoryName}}]</span>
           <span class="px-2 text-grey">|</span>
           <span class="flex-1 text-dark-1 titles pr-2">{{news.title}}</span>
           <span class="text-grey fs-sm">{{news.createdAt | date}}</span>
-        </div>
+        </router-link>
       </template>
     </m-list-card>
 
@@ -68,14 +68,16 @@
       <!-- 拿到子组件里的category -->
       <template #items="{category}">
         <div class="d-flex heroes">
-          <div
+          <router-link
+            tag="div"
+            :to="`/heroes/${heroes._id}`"
             class="py-2 text-center hero-item"
             v-for="(heroes, index) in category.heroList"
             :key="index"
           >
             <img :src="heroes.avatar" alt />
             <div>{{heroes.name}}</div>
-          </div>
+          </router-link>
         </div>
       </template>
     </m-list-card>
