@@ -1,5 +1,6 @@
 <template>
   <div class="phero" v-if="model">
+    <!-- 顶部栏 -->
     <div class="topbar bg-black py-2 px-3 d-flex text-white">
       <img src="../assets/logo.png" height="30" />
       <div class="px-3 flex-1">
@@ -8,6 +9,7 @@
       </div>
       <router-link to="/" tag="div" style="fontSize: 1.2308rem; margin-right: 0.3846rem">更多英雄 &gt;</router-link>
     </div>
+    <!-- 英雄大图封面 -->
     <div>
       <div class="top" :style="{'background-image': `url(${model.banner})`}">
         <div class="info text-white p-3">
@@ -30,17 +32,39 @@
         </div>
       </div>
     </div>
+
+    <div class="list-bar">
+      <div class="nav d-flex">
+        <div
+          class="nav-item"
+          v-for="(item, index) in navBar"
+          :class="{active: active === index}"
+          @click="$refs.swiper.$swiper.slideTo(index)"
+        >
+          <div class="nav-link">{{item}}</div>
+        </div>
+      </div>
+      <swiper ref="swiper" @transitionStart="() => active = this.$refs.swiper.$swiper.activeIndex">
+        <swiper-slide>
+          <hero-card :model='model'></hero-card>
+        </swiper-slide>
+        <swiper-slide>2</swiper-slide>
+      </swiper>
+    </div>
   </div>
 </template>
-
 <script>
+import HeroCard from "../components/HeroCard.vue";
 export default {
+  components: { HeroCard },
   props: {
     id: { required: true },
   },
   data() {
     return {
       model: null,
+      active: 0,
+      navBar: ["初识英雄", "进阶攻略"],
     };
   },
   created() {
@@ -70,8 +94,11 @@ export default {
       height: 100%;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;     //靠底部对齐
-      background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1));   // 渐变颜色
+      justify-content: flex-end; //靠底部对齐
+      background: linear-gradient(
+        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 1)
+      ); // 渐变颜色
       .detail {
         justify-content: space-between;
         .scores {
@@ -93,12 +120,31 @@ export default {
             text-align: center;
             border-radius: 50%;
             font-size: 0.7rem;
-            border: 1px solid rgba(255,255,255,0.2)
+            border: 1px solid rgba(255, 255, 255, 0.2);
           }
         }
         .pifu {
           color: #b6afa8;
-          font-size: .22rem;
+          font-size: 0.22rem;
+        }
+      }
+    }
+  }
+  .list-bar {
+    .nav {
+      justify-content: space-around;
+      border-bottom: 2px solid #d4d9de;
+      background-color: #fff;
+
+      .nav-item {
+        &.active {
+          color: #d59b40;
+          border-bottom: 2px solid #d59b40;
+          margin-bottom: 0.3846rem;
+        }
+        .nav-link {
+          font-size: 14px;
+          margin: 0.7692rem 0.7692rem 0.3846rem 0.7692rem;
         }
       }
     }

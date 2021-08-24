@@ -20,6 +20,20 @@
       "unicode_decimal": 58958
     },
     {
+      "icon_id": "10564345",
+      "name": "play",
+      "font_class": "play",
+      "unicode": "e717",
+      "unicode_decimal": 59159
+    },
+    {
+      "icon_id": "19457234",
+      "name": "picture",
+      "font_class": "tupianshangchuan",
+      "unicode": "e6b0",
+      "unicode_decimal": 59056
+    },
+    {
       "icon_id": "20761408",
       "name": "news",
       "font_class": "news",

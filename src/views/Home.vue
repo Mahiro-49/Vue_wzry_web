@@ -51,7 +51,7 @@
     <!-- end -->
 
     <!-- 新闻资讯 -->
-    <m-list-card icon="menu" title="新闻资讯" :categories="newsCats">
+    <m-list-card icon1="menu" icon2="menu1" title="新闻资讯" :categories="newsCats">
       <!-- 拿到子组件里的category -->
       <template #items="{category}">
         <router-link tag="div" :to="`/articles/${news._id}`" class="py-2 fs-lg d-flex mt-2" v-for="(news, index) in category.newsList" :key="index">
@@ -64,7 +64,7 @@
     </m-list-card>
 
     <!-- 英雄列表 -->
-    <m-list-card class="cards" icon="a-ziyuan6" title="英雄列表" :categories="heroCats">
+    <m-list-card class="cards" icon1="a-ziyuan6" icon2="menu1" title="英雄列表" :categories="heroCats">
       <!-- 拿到子组件里的category -->
       <template #items="{category}">
         <div class="d-flex heroes">
@@ -86,7 +86,6 @@
 
 
      
-    <m-list-card class="cards" icon="a-ziyuan6" title="英雄列表" :categories="heroCats">
       
     </m-list-card>
   </div>

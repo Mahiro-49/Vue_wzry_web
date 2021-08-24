@@ -1,6 +1,6 @@
 @font-face {
   font-family: "iconfont"; /* Project id  */
-  src: url('iconfont.ttf?t=1628689765166') format('truetype');
+  src: url('iconfont.ttf?t=1629611731346') format('truetype');
 }
 
 .iconfont {
@@ -17,6 +17,14 @@
 
 .icon-back:before {
   content: "\e64e";
+}
+
+.icon-play:before {
+  content: "\e717";
+}
+
+.icon-tupianshangchuan:before {
+  content: "\e6b0";
 }
 
 .icon-news:before {
