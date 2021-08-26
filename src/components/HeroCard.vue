@@ -46,23 +46,23 @@
         <div class="suggest d-flex">
           <div class="main d-flex">
             <span class="first">主升</span>
-            <img :src="model.skills[1].icon" alt />
+            <img class="img1" :src="model.skills[1].icon" alt />
             <span class="name">{{model.skills[1].name}}</span>
           </div>
           <div class="main d-flex">
             <span class="first">副升</span>
-            <img :src="model.skills[2].icon" alt />
+            <img class="img1" :src="model.skills[2].icon" alt />
             <span class="name">{{model.skills[2].name}}</span>
           </div>
           <div class="player d-flex">
             <p>召唤师技能</p>
             <div class="items d-flex">
-              <div class="item d-flex border">
-                <img :src="model.playerSkills[0].icon" alt />
+              <div class="item d-flex">
+                <img class="img2" :src="model.playerSkills[0].icon" alt />
                 <span>{{model.playerSkills[0].name}}</span>
               </div>
               <div class="item d-flex">
-                <img :src="model.playerSkills[1].icon" alt />
+                <img class="img2" :src="model.playerSkills[1].icon" alt />
                 <span>{{model.playerSkills[1].name}}</span>
               </div>
             </div>
@@ -217,7 +217,6 @@ export default {
   }
 }
 .suggest {
-  position: relative;
   align-items: center;
   .main {
     flex-direction: column;
@@ -225,15 +224,12 @@ export default {
     .first {
       margin-bottom: 0.7692rem;
     }
-    img {
+    .img1 {
       width: 60%;
       margin-bottom: 0.7692rem;
     }
   }
   .player {
-    position: absolute;
-    top: 0;
-    right: -0.5385rem;
     flex-direction: column;
     align-items: center;
     p {
@@ -243,8 +239,8 @@ export default {
       .item {
         flex-direction: column;
         align-items: center;
-        img {
-          width: 65%;
+        .img2 {
+          width: 70%;
           margin-bottom: 0.7692rem;
           border-radius: 50%;
         }

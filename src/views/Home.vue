@@ -36,16 +36,28 @@
             <div class="py-2">周边商城站</div>
           </a>
         </div>
-        <div class="nav-item mb-3 py-3" v-for="item in 7" :key="item">
+        <div class="nav-item mb-3 py-3">
+          <a href="//pvp.qq.com/cp/a20161116tyf/page01.htm">
+            <i class="sprite sprite-tyf"></i>
+            <div class="py-2">体验服</div>
+          </a>
+        </div>
+        <div class="nav-item mb-3 py-3" v-for="item in 6" :key="item" v-show="isShow">
           <a href="//pvp.qq.com/cp/a20161116tyf/page01.htm">
             <i class="sprite sprite-tyf"></i>
             <div class="py-2">体验服</div>
           </a>
         </div>
       </div>
-      <div class="bg-light py-2 fs-sm">
-        <i class="sprite sprite-arrow mr-1"></i>
-        <span>收起</span>
+      <div class="bg-light py-2 fs-sm" @click="showBar">
+        <div v-if="isShow">
+          <i class="sprite sprite-arrow mr-1"></i>
+          <span>收起</span>
+        </div>
+        <div v-else>
+          <i class="sprite sprite-arrow1 mr-1"></i>
+          <span>展开</span>
+        </div>
       </div>
     </div>
     <!-- end -->
@@ -112,7 +124,8 @@
                 <span class="title">【边路通天指南】第5期：解决英雄克制的技巧</span>
                 <div class="d-flex watch-date">
                   <div class="num">
-                    <span class="iconfont icon-play icon"></span><span>1497</span>
+                    <span class="iconfont icon-play icon"></span>
+                    <span>1497</span>
                   </div>
                   <div>08-23</div>
                 </div>
@@ -149,6 +162,7 @@ export default {
       heroCats: [],
       videoNav: ["精品栏目", "英雄攻略", "赛事精品"],
       active: 0,
+      isShow: false,
     };
   },
 
@@ -157,6 +171,10 @@ export default {
     this.getHeroCats();
   },
   methods: {
+    showBar() {
+      this.isShow = !this.isShow;
+    },
+
     // 获取新闻数据
     async getNewsCats() {
       const res = await this.$http.get("news/list");
@@ -232,6 +250,12 @@ export default {
       width: 0.7692rem;
       height: 0.7692rem;
       background-position: 38.577% 52.076%;
+    }
+    &.sprite-arrow1 {
+      width: 0.7692rem;
+      height: 0.7692rem;
+      background-position: 38.577% 52.076%;
+      transform: rotate(180deg);
     }
   }
 }
