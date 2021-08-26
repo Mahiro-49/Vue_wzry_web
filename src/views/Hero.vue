@@ -48,7 +48,7 @@
         <swiper-slide>
           <hero-card :model='model'></hero-card>
         </swiper-slide>
-        <swiper-slide>2</swiper-slide>
+        <swiper-slide>待开发</swiper-slide>
       </swiper>
     </div>
   </div>

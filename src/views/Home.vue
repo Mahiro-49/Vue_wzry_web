@@ -54,7 +54,13 @@
     <m-list-card icon1="menu" icon2="menu1" title="新闻资讯" :categories="newsCats">
       <!-- 拿到子组件里的category -->
       <template #items="{category}">
-        <router-link tag="div" :to="`/articles/${news._id}`" class="py-2 fs-lg d-flex mt-2" v-for="(news, index) in category.newsList" :key="index">
+        <router-link
+          tag="div"
+          :to="`/articles/${news._id}`"
+          class="py-2 fs-lg d-flex mt-2"
+          v-for="(news, index) in category.newsList"
+          :key="index"
+        >
           <span class="text-info">[{{news.categoryName}}]</span>
           <span class="px-2 text-grey">|</span>
           <span class="flex-1 text-dark-1 titles pr-2">{{news.title}}</span>
@@ -82,12 +88,42 @@
       </template>
     </m-list-card>
 
-
-
-
-     
-      
-    </m-list-card>
+    <!-- 精彩视频 -->
+    <m-card icon1="play" icon2="menu1" title="精彩视频">
+      <div class="video-bar">
+        <div class="video-nav d-flex">
+          <div
+            class="nav-item"
+            v-for="(item, index) in videoNav"
+            :class="{active: active === index}"
+            @click="$refs.swiper.$swiper.slideTo(index)"
+          >
+            <div class="nav-link">{{item}}</div>
+          </div>
+        </div>
+        <swiper
+          ref="swiper"
+          @transitionStart="() => active = this.$refs.swiper.$swiper.activeIndex"
+        >
+          <swiper-slide>
+            <div class="video-items d-flex" v-for="n in 4">
+              <div class="video-item d-flex">
+                <img src="../assets/images/video.jpg" alt />
+                <span class="title">【边路通天指南】第5期：解决英雄克制的技巧</span>
+                <div class="d-flex watch-date">
+                  <div class="num">
+                    <span class="iconfont icon-play icon"></span><span>1497</span>
+                  </div>
+                  <div>08-23</div>
+                </div>
+              </div>
+            </div>
+          </swiper-slide>
+          <swiper-slide>待开发</swiper-slide>
+          <swiper-slide>待开发</swiper-slide>
+        </swiper>
+      </div>
+    </m-card>
   </div>
 </template>
 
@@ -111,6 +147,8 @@ export default {
       },
       newsCats: [],
       heroCats: [],
+      videoNav: ["精品栏目", "英雄攻略", "赛事精品"],
+      active: 0,
     };
   },
 
@@ -242,6 +280,7 @@ export default {
   text-overflow: ellipsis;
   white-space: nowrap; // 不换行 只显示一行
 }
+
 .heroes {
   flex-wrap: wrap;
 
@@ -252,6 +291,53 @@ export default {
       width: 100%;
       border: 1px solid #e3ecf5;
       border-radius: 0.3846rem;
+    }
+  }
+}
+
+.video-bar {
+  .video-nav {
+    justify-content: space-around;
+    background-color: #fff;
+    margin-bottom: 0.7692rem;
+    .nav-item {
+      &.active {
+        color: #d59b40;
+        border-bottom: 2px solid #d59b40;
+        margin-bottom: 0.3846rem;
+      }
+      .nav-link {
+        font-size: 14px;
+        margin: 0.7692rem 0.7692rem 0.3846rem 0.7692rem;
+      }
+    }
+  }
+  .video-items {
+    display: inline-block;
+    width: 48%;
+    height: auto;
+    margin-top: 1.5385rem;
+    .video-item {
+      flex-direction: column;
+      margin-left: 0.7692rem;
+      .title {
+        margin: 0.7692rem 0 0.7692rem 0;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+      }
+      .watch-date {
+        justify-content: space-between;
+        font-size: 0.7692rem;
+        color: #a4a8ac;
+        .num {
+          .icon {
+            font-size: 0.7692rem;
+            margin-right: 0.1538rem;
+          }
+        }
+      }
     }
   }
 }
