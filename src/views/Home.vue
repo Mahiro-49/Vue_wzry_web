@@ -135,6 +135,9 @@
           <swiper-slide>待开发</swiper-slide>
           <swiper-slide>待开发</swiper-slide>
         </swiper>
+
+        <div class="border"></div>
+        <div class="font1">加载更多内容</div>
       </div>
     </m-card>
   </div>
@@ -363,6 +366,16 @@ export default {
         }
       }
     }
+  }
+  .border {
+    border-top: 1px solid #d4d9de;
+    margin-top: 1.5385rem;
+  }
+  .font1 {
+    text-align: center;
+    color: #a4a8ac;
+    font-size: 0.7692rem;
+    margin-top: 0.7692rem;
   }
 }
 </style>
